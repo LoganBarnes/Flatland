@@ -1,4 +1,8 @@
 // HeadlessRenderUnitTests.cpp
+#include "shared/core/ContinuousDriver.hpp"
+#include "world/FlatlandWorld.hpp"
+#include "io/FlatlandIOHandler.hpp"
+
 #include "gmock/gmock.h"
 
 
@@ -44,7 +48,21 @@ MATCHER_P( FloatNearPointwise, eps, "Out of range" )
 /// \brief TestNothing
 /////////////////////////////////////////////////////////////////
 TEST_F( HeadlessRenderUnitTests, TestNothing )
-{}
+{
+  //
+  // create world to handle physical updates
+  // and ioHandler to interface between the
+  // world and the user
+  //
+  rel::FlatlandWorld world;
+  rel::FlatlandIOHandler io( world );
+
+  //
+  // pass world and ioHandler to driver
+  // to manage event loop
+  //
+  shs::ContinuousDriver driver( world, io );
+}
 
 
 

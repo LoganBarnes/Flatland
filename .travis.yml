@@ -99,4 +99,7 @@ script:
   - ./unixConfigureAndBuild.sh -sf -t
   - testbin/testFlatland
 
+notifications:
+  on_success: never
+  on_failure: never
 
