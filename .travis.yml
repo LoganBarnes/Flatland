@@ -1,0 +1,20 @@
+os: linux
+dist: trusty
+sudo: required
+language: node
+addons:
+  apt:
+    packages:
+     - mesa-utils
+env:
+  global:
+    - TERM: dumb
+    - MESA_DEBUG: 1
+    - LIBGL_DEBUG: 1
+    - EGL_LOG_LEVEL: debug
+script:
+  - sudo apt-get purge fglrx
+  - cat /etc/init.d/xvfb
+  - sh -e /etc/init.d/xvfb start
+  - sleep 2
+  - glxinfo -display :99

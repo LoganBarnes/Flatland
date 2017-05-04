@@ -1,5 +1,5 @@
-Cutting
-=======
+Flatland
+========
 
 
 Download
@@ -7,7 +7,7 @@ Download
 Make sure to clone all submodules as well:
 
 ```bash
-git clone --recursive https://gitlab.com/LoganBarnes/cnc.git
+git clone --recursive https://gitlab.com/LoganBarnes/Flatland.git
 ```
 
 If the project was already cloned without submodules use this command from the root folder:
@@ -25,7 +25,7 @@ Build and Run
 ```bash
 cd run
 ./unixConfigureAndBuild.sh
-./bin/runCutting
+./bin/runFlatland
 ```
 
 
@@ -34,7 +34,7 @@ cd run
 ```batch
 cd run
 winConfigureAndBuild.cmd
-bin\runCutting.exe
+bin\runFlatland.exe
 ```
 
 
