@@ -13,7 +13,6 @@ addons:
     packages:
       - clang-3.9
       - libc++-dev
-      - xorg-dev
       - libglew-dev
       - freeglut3-dev
       - libxi-dev
@@ -41,47 +40,47 @@ addons:
     # - EGL_LOG_LEVEL: debug
 
 
-matrix:
-  include:
+# matrix:
+#   include:
 
-    # Xcode 8
-    - os: osx
-      env: SHARED=OFF
-      osx_image: xcode8
+#     # Xcode 8
+#     - os: osx
+#       env: SHARED=OFF
+#       osx_image: xcode8
 
-    # clang 3.9
-    - os: linux
-      env: LLVM=3.9 SHARED=OFF
-      compiler: "clang-3.9"
+#     # clang 3.9
+#     - os: linux
+#       env: LLVM=3.9 SHARED=OFF
+#       compiler: "clang-3.9"
 
 before_install:
-  ############################################################################
-  # Update OS X homebrew
-  ############################################################################
-  - |
-    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-      brew update
-    fi
+  # ############################################################################
+  # # Update OS X homebrew
+  # ############################################################################
+  # - |
+  #   if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+  #     brew update
+  #   fi
 
-  ############################################################################
-  # Set build type to default Release value
-  ############################################################################
-  - if [[ "${BUILD_TYPE}" == "" ]]; then BUILD_TYPE=Release; fi
+  # ############################################################################
+  # # Set build type to default Release value
+  # ############################################################################
+  # - if [[ "${BUILD_TYPE}" == "" ]]; then BUILD_TYPE=Release; fi
 
-  ############################################################################
-  # Set up default compiler versions and corresponding environment variables
-  ############################################################################
-  - if [[ "${LLVM}" == "default" ]]; then LLVM=3.9; fi
-  - |
-    if [[ "${LLVM}" != "" ]]; then
-      export CXX=clang++-${LLVM}
-      export CXXFLAGS=-stdlib=libc++
-    fi
-  - |
-    if [[ "${GCC}" != "" ]]; then
-      export CXX=g++-${GCC}
-    fi
-  - ${CXX} --version
+  # ############################################################################
+  # # Set up default compiler versions and corresponding environment variables
+  # ############################################################################
+  # - if [[ "${LLVM}" == "default" ]]; then LLVM=3.9; fi
+  # - |
+  #   if [[ "${LLVM}" != "" ]]; then
+  #     export CXX=clang++-${LLVM}
+  #     export CXXFLAGS=-stdlib=libc++
+  #   fi
+  # - |
+  #   if [[ "${GCC}" != "" ]]; then
+  #     export CXX=g++-${GCC}
+  #   fi
+  # - ${CXX} --version
 
   ############################################################################
   # Set up headless rendering
@@ -108,30 +107,30 @@ before_install:
   - export DEBIAN_FRONTEND=noninteractive
   - sudo apt-get -yq --force-yes install libgl1-mesa-dev libgl1-mesa-glx mesa-common-dev libglapi-mesa libgbm1 libgl1-mesa-dri libxatracker-dev xvfb
 
-install:
-  ############################################################################
-  # All compiled dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
-  ############################################################################
-  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
-  - mkdir -p ${DEPS_DIR} && cd ${DEPS_DIR}
+# install:
+#   ############################################################################
+#   # All compiled dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
+#   ############################################################################
+#   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+#   - mkdir -p ${DEPS_DIR} && cd ${DEPS_DIR}
 
-  ############################################################################
-  # Install a recent CMake
-  ############################################################################
-  - |
-    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
-      CMAKE_URL="https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.tar.gz"
-      mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
-      export PATH=${DEPS_DIR}/cmake/bin:${PATH}
-    else
-      brew upgrade cmake || brew install cmake
-    fi
-  - cmake --version
+#   ############################################################################
+#   # Install a recent CMake
+#   ############################################################################
+#   - |
+#     if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
+#       CMAKE_URL="https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.tar.gz"
+#       mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+#       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
+#     else
+#       brew upgrade cmake || brew install cmake
+#     fi
+#   - cmake --version
 
 before_script:
   - export DISPLAY=:99
   - export LIBGL_ALWAYS_SOFTWARE=1
-  - xpra --xvfb="Xorg +extension GLX +extension RANDR +extension RENDER -config `pwd`/res/config/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log" start :99
+  - xpra --xvfb="Xorg +extension GLX +extension RANDR +extension RENDER -config `pwd`/res/config/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :99
   - sleep 3
   - LIBGL_ALWAYS_SOFTWARE=1 glxinfo
   - glxinfo
@@ -142,8 +141,8 @@ script:
   # Build project and run tests
   ############################################################################
   - cd ${TRAVIS_BUILD_DIR}/run
-  - ./unixConfigureAndBuild.sh -sf -t
-  - testbin/testFlatland
+  # - ./unixConfigureAndBuild.sh -sf -t
+  # - testbin/testFlatland
 
 notifications:
   on_success: never
