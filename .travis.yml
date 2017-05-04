@@ -15,8 +15,8 @@ addons:
       - 'libc++-dev'
       - 'xorg-dev'
       - 'mesa-utils'
-      - 'libgl1-mesa-swx11'
-      - 'libgl1-mesa-swx11-dev'
+      - 'libgl1-mesa-glx'
+      - 'libgl1-mesa-dev'
       - 'xvfb'
 
 env:
