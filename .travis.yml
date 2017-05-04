@@ -29,6 +29,11 @@ env:
 matrix:
   include:
 
+    # Xcode 8
+    - os: osx
+      env: SHARED=OFF
+      osx_image: xcode8
+
     # clang 3.9
     - os: linux
       env: LLVM=3.9 SHARED=OFF
@@ -66,8 +71,8 @@ before_install:
   ############################################################################
   # Set up headless rendering
   ############################################################################
-  - sudo add-apt-repository ppa:ubuntu-x-swat/updates
-  - sudo apt update && sudo apt dist-upgrade
+  - sudo add-apt-repository -y ppa:oibaf/graphics-drivers
+  - sudo apt-get update -qq -y
   - sudo apt-get purge fglrx
   - export DISPLAY=:99
   # - export GALLIUM_DRIVER=\"softpipe\"
