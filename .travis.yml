@@ -9,25 +9,36 @@ dist: trusty
 addons:
   apt:
     sources:
-      - 'llvm-toolchain-trusty-3.9'
+      - llvm-toolchain-trusty-3.9
     packages:
-      - 'clang-3.9'
-      - 'libc++-dev'
-      - 'xorg-dev'
-      - 'mesa-utils'
-      - 'libgl1-mesa-glx'
-      - 'libgl1-mesa-dev'
-      - 'libgl1-mesa-dri'
-      - 'mesa-common-dev'
-      - 'libglapi-mesa'
-      - 'xvfb'
+      - clang-3.9
+      - libc++-dev
+      - xorg-dev
+      - libglew-dev
+      - freeglut3-dev
+      - libxi-dev
+      - libxmu-dev
+      - xserver-xorg-video-dummy
+      - xpra
+      - xorg-dev
+      - opencl-headers
+      - libgl1-mesa-dev
+      - libxcursor-dev
+      - libpulse-dev
+      - libxinerama-dev
+      - libxrandr-dev
+      - libxv-dev
+      - libasound2-dev
+      - libudev-dev
+      - mesa-utils
+      - libgl1-mesa-glx
 
 env:
   global:
-    - TERM: dumb
-    - MESA_DEBUG: 1
-    - LIBGL_DEBUG: 1
-    - EGL_LOG_LEVEL: debug
+    # - TERM: dumb
+    # - MESA_DEBUG: 1
+    # - LIBGL_DEBUG: 1
+    # - EGL_LOG_LEVEL: debug
 
 
 matrix:
@@ -75,23 +86,27 @@ before_install:
   ############################################################################
   # Set up headless rendering
   ############################################################################
-  # - sudo apt-get purge fglrx
+  # # - sudo apt-get purge fglrx
+  # - sudo add-apt-repository -y ppa:oibaf/graphics-drivers
+  # - sudo apt-get update -qq -y
+  # - sudo apt-get dist-upgrade -qq -y
+  # # - sudo apt-get -yq --force-yes install libgl1-mesa-dev libgl1-mesa-glx mesa-common-dev libglapi-mesa libgbm1 libgl1-mesa-dri libxatracker-dev xvfb
+  # - export DISPLAY=:99
+  # - export LIBGL_ALWAYS_SOFTWARE=1
+  # - export LIBGL_PROFILE_CORE=1
+  # # - export GALLIUM_DRIVER=\"softpipe\"
+  # # - cat /etc/init.d/xvfb
+  # # - sh -e /etc/init.d/xvfb start
+  # # - sleep 2
+  # # - xpra --xvfb="Xorg +extension GLX +extension RANDR +extension RENDER -config `pwd`/res/config/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :99
+  # # - sudo apt-get install -qq --force-yes mesa-utils libgl1-mesa-swx11 libgl1-mesa-swx11-dev xvfb
+  # - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1400x900x24 -ac +extension GLX +render
+  # - sleep 3
+  # - glxinfo -display :99
   - sudo add-apt-repository -y ppa:oibaf/graphics-drivers
   - sudo apt-get update -qq -y
-  - sudo apt-get dist-upgrade -qq -y
-  # - sudo apt-get -yq --force-yes install libgl1-mesa-dev libgl1-mesa-glx mesa-common-dev libglapi-mesa libgbm1 libgl1-mesa-dri libxatracker-dev xvfb
-  - export DISPLAY=:99
-  - export LIBGL_ALWAYS_SOFTWARE=1
-  - export LIBGL_PROFILE_CORE=1
-  # - export GALLIUM_DRIVER=\"softpipe\"
-  # - cat /etc/init.d/xvfb
-  # - sh -e /etc/init.d/xvfb start
-  # - sleep 2
-  # - xpra --xvfb="Xorg +extension GLX +extension RANDR +extension RENDER -config `pwd`/res/config/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :99
-  # - sudo apt-get install -qq --force-yes mesa-utils libgl1-mesa-swx11 libgl1-mesa-swx11-dev xvfb
-  - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1400x900x24 -ac +extension GLX +render
-  - sleep 3
-  - glxinfo --display :99
+  - export DEBIAN_FRONTEND=noninteractive
+  - sudo apt-get -yq --force-yes install libgl1-mesa-dev libgl1-mesa-glx mesa-common-dev libglapi-mesa libgbm1 libgl1-mesa-dri libxatracker-dev xvfb
 
 install:
   ############################################################################
@@ -113,8 +128,14 @@ install:
     fi
   - cmake --version
 
-# before_script:
-  # - "xpra --xvfb=\"Xorg +extension GLX -config `pwd`/res/config/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log\"  start :9"
+before_script:
+  - export DISPLAY=:99
+  - export LIBGL_ALWAYS_SOFTWARE=1
+  - xpra --xvfb=\"Xorg +extension GLX +extension RANDR +extension RENDER -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log\"  start :99
+  - sleep 3
+  - LIBGL_ALWAYS_SOFTWARE=1 glxinfo
+  - glxinfo
+  - cat ${HOME}/.xpra/xorg.log
 
 script:
   ############################################################################
