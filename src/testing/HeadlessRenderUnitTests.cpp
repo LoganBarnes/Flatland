@@ -1,4 +1,4 @@
-// EmptyUnitTests.cpp
+// HeadlessRenderUnitTests.cpp
 #include "gmock/gmock.h"
 
 
@@ -10,25 +10,25 @@ constexpr float epsilonf = 1.0e-8f;
 
 
 ///
-/// \brief The EmptyUnitTests class
+/// \brief The HeadlessRenderUnitTests class
 ///
-class EmptyUnitTests : public ::testing::Test
+class HeadlessRenderUnitTests : public ::testing::Test
 {
 
 protected:
 
   /////////////////////////////////////////////////////////////////
-  /// \brief EmptyUnitTests
+  /// \brief HeadlessRenderUnitTests
   /////////////////////////////////////////////////////////////////
-  EmptyUnitTests( )
+  HeadlessRenderUnitTests( )
   {}
 
 
   /////////////////////////////////////////////////////////////////
-  /// \brief ~EmptyUnitTests
+  /// \brief ~HeadlessRenderUnitTests
   /////////////////////////////////////////////////////////////////
   virtual
-  ~EmptyUnitTests( )
+  ~HeadlessRenderUnitTests( )
   {}
 
 };
@@ -43,7 +43,7 @@ MATCHER_P( FloatNearPointwise, eps, "Out of range" )
 /////////////////////////////////////////////////////////////////
 /// \brief TestNothing
 /////////////////////////////////////////////////////////////////
-TEST_F( EmptyUnitTests, TestNothing )
+TEST_F( HeadlessRenderUnitTests, TestNothing )
 {}
 
 
