@@ -100,8 +100,8 @@ before_install:
   - cat /etc/init.d/xvfb
   - sh -e /etc/init.d/xvfb start
   - sleep 2
-  # - xpra --xvfb="Xorg +extension GLX +extension RANDR +extension RENDER -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :99
-  # - sleep 3
+  - xpra --xvfb="Xorg +extension GLX +extension RANDR +extension RENDER -config `pwd`/res/config/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :99
+  - sleep 3
   - glxinfo
 
 install:
@@ -123,6 +123,9 @@ install:
       brew upgrade cmake || brew install cmake
     fi
   - cmake --version
+
+# before_script:
+  # - "xpra --xvfb=\"Xorg +extension GLX -config `pwd`/res/config/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log\"  start :9"
 
 script:
   ############################################################################
