@@ -8,15 +8,10 @@
 #include <memory>
 
 
-namespace shared
-{
-class World;
-}
-
-
 namespace rel
 {
 
+class RelativityWorld;
 class Grid;
 
 /////////////////////////////////////////////
@@ -32,7 +27,7 @@ public:
   ///////////////////////////////////////////////////////////////
   /// \brief RelativityIOHandler
   ///////////////////////////////////////////////////////////////
-  RelativityIOHandler( shs::World &world );
+  RelativityIOHandler( RelativityWorld &world );
 
 
   ///////////////////////////////////////////////////////////////
@@ -51,7 +46,7 @@ private:
   virtual
   void _onGuiRender ( ) final;
 
-
+  RelativityWorld &relWorld_;
   std::unique_ptr< Grid > upGrid_;
 
 };

@@ -1,6 +1,8 @@
 #include "RelativityIOHandler.hpp"
 
 // project
+#include "world/RelativityWorld.hpp"
+#include "world/RelativityEntity.hpp"
 #include "io/Grid.hpp"
 
 // shared
@@ -13,6 +15,7 @@
 // system
 #include <vector>
 #include <algorithm>
+#include <memory>
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
@@ -33,8 +36,9 @@ constexpr int defaultHeight = 720;
 ///
 /// \author Logan Barnes
 /////////////////////////////////////////////
-RelativityIOHandler::RelativityIOHandler( shs::World &world )
+RelativityIOHandler::RelativityIOHandler( RelativityWorld &world )
   : ImguiOpenGLIOHandler( world, true, defaultWidth, defaultHeight )
+  , relWorld_( world )
   , upGrid_( new Grid(
                       glm::vec3( -10.0f, -10.0f, -60.0f ), // min
                       glm::vec3(  10.0f,  10.0f, 0.0f ), // max
@@ -45,8 +49,7 @@ RelativityIOHandler::RelativityIOHandler( shs::World &world )
   std::unique_ptr< shg::Callback > upCallback( new shs::SharedCallback( ) );
   imguiCallback_->setCallback( std::move( upCallback ) );
 
-  std::cout << glm::to_string( upCamera_->getEyeVector( ) ) << std::endl;
-  std::cout << glm::to_string( upCamera_->getLookVector( ) ) << std::endl;
+  relWorld_.addEntity( std::unique_ptr< RelativityEntity >( new RelativityEntity( 60.0f ) ) );
 }
 
 
@@ -68,6 +71,13 @@ RelativityIOHandler::_onRender( const double )
   shg::OpenGLHelper::clearFramebuffer( );
 
   upGrid_->render( *upCamera_ );
+
+  auto &entities = relWorld_.getEntities( );
+
+  for ( auto &entity : entities )
+  {
+    entity->render( *upCamera_ );
+  }
 } // RelativityIOHandler::onRender
 
 

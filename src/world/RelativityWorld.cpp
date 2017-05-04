@@ -1,0 +1,60 @@
+// RelativityWorld.cpp
+#include "RelativityWorld.hpp"
+#include "RelativityEntity.hpp"
+
+
+namespace rel
+{
+
+
+///////////////////////////////////////////////////////////////
+/// \brief RelativityWorld::RelativityWorld
+///////////////////////////////////////////////////////////////
+RelativityWorld::RelativityWorld( )
+  : timePosition_( 0.0 )
+{}
+
+
+///////////////////////////////////////////////////////////////
+/// \brief RelativityWorld::~RelativityWorld
+///////////////////////////////////////////////////////////////
+RelativityWorld::~RelativityWorld( )
+{}
+
+
+///////////////////////////////////////////////////////////////
+/// \brief RelativityWorld::update
+///////////////////////////////////////////////////////////////
+void
+RelativityWorld::update(
+                        const double /*worldTime*/, ///< update to this time
+                        const double /*timestep*/ ///< interval since last update
+                        )
+{}
+
+
+
+///////////////////////////////////////////////////////////////
+/// \brief RelativityWorld::addEntity
+/// \param upEntity
+///////////////////////////////////////////////////////////////
+void
+RelativityWorld::addEntity( std::unique_ptr< RelativityEntity > upEntity )
+{
+  entities_.push_back( std::move( upEntity ) );
+}
+
+
+
+///////////////////////////////////////////////////////////////
+/// \brief RelativityWorld::getEntities
+///////////////////////////////////////////////////////////////
+const std::vector< std::unique_ptr< RelativityEntity > >&
+RelativityWorld::getEntities( ) const
+{
+  return entities_;
+}
+
+
+
+} // namespace rel

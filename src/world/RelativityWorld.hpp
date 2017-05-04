@@ -1,16 +1,24 @@
 // RelativityWorld.hpp
 #pragma once
 
+#include "shared/core/World.hpp"
 
-namespace shs
+#include <vector>
+#include <memory>
+
+
+namespace rel
 {
+
+class RelativityEntity;
+
 
 /////////////////////////////////////////////
 /// \brief The RelativityWorld class
 ///
 /// \author Logan Barnes
 /////////////////////////////////////////////
-class RelativityWorld
+class RelativityWorld : public shs::World
 {
 
 public:
@@ -37,11 +45,26 @@ public:
                ) final;
 
 
+  ///////////////////////////////////////////////////////////////
+  /// \brief addEntity
+  /// \param upEntity
+  ///////////////////////////////////////////////////////////////
+  void addEntity ( std::unique_ptr< RelativityEntity > upEntity );
+
+
+  ///////////////////////////////////////////////////////////////
+  /// \brief getEntities
+  /// \return
+  ///////////////////////////////////////////////////////////////
+  const std::vector< std::unique_ptr< RelativityEntity > > &getEntities ( ) const;
+
+
 private:
 
   float timePosition_;
+  std::vector< std::unique_ptr< RelativityEntity > > entities_;
 
 };
 
 
-} // end namespace shs
+} // namespace rel

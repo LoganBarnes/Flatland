@@ -45,6 +45,13 @@ set(
     ${SHARED_UNCRUSTIFY_FILE}
     ${RES_PATH}/shaders/grid/shader.vert
     ${RES_PATH}/shaders/grid/shader.frag
+    ${RES_PATH}/shaders/entity/shader.vert
+    ${RES_PATH}/shaders/entity/shader.frag
+
+    ${SRC_DIR}/world/RelativityWorld.hpp
+    ${SRC_DIR}/world/RelativityWorld.cpp
+    ${SRC_DIR}/world/RelativityEntity.hpp
+    ${SRC_DIR}/world/RelativityEntity.cpp
 
     ${SRC_DIR}/io/RelativityIOHandler.hpp
     ${SRC_DIR}/io/RelativityIOHandler.cpp

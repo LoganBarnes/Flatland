@@ -1,6 +1,6 @@
 // Relativity.cpp
 #include "shared/core/ContinuousDriver.hpp"
-#include "shared/core/World.hpp"
+#include "world/RelativityWorld.hpp"
 #include "io/RelativityIOHandler.hpp"
 #include "RelativityConfig.hpp"
 
@@ -34,7 +34,7 @@ main(
     // and ioHandler to interface between the
     // world and the user
     //
-    shs::World world;
+    rel::RelativityWorld world;
     rel::RelativityIOHandler io( world );
 
     //
