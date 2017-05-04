@@ -48,13 +48,13 @@ set(
     ${RES_PATH}/shaders/entity/shader.vert
     ${RES_PATH}/shaders/entity/shader.frag
 
-    ${SRC_DIR}/world/RelativityWorld.hpp
-    ${SRC_DIR}/world/RelativityWorld.cpp
-    ${SRC_DIR}/world/RelativityEntity.hpp
-    ${SRC_DIR}/world/RelativityEntity.cpp
+    ${SRC_DIR}/world/FlatlandWorld.hpp
+    ${SRC_DIR}/world/FlatlandWorld.cpp
+    ${SRC_DIR}/world/FlatlandEntity.hpp
+    ${SRC_DIR}/world/FlatlandEntity.cpp
 
-    ${SRC_DIR}/io/RelativityIOHandler.hpp
-    ${SRC_DIR}/io/RelativityIOHandler.cpp
+    ${SRC_DIR}/io/FlatlandIOHandler.hpp
+    ${SRC_DIR}/io/FlatlandIOHandler.cpp
     ${SRC_DIR}/io/Grid.hpp
     ${SRC_DIR}/io/Grid.cpp
     )
@@ -63,7 +63,7 @@ if ( ${BUILD_TESTS} )
 
   set(
       TESTING_SOURCE
-      ${SRC_DIR}/testing/EmptyUnitTests.cpp
+      ${SRC_DIR}/testing/HeadlessRenderUnitTests.cpp
       )
 
   list( APPEND TESTING_INCLUDE_DIRS ${SRC_DIR} )
@@ -72,7 +72,7 @@ endif( ${BUILD_TESTS} )
 
 
 # file with main function
-set( PROJECT_MAIN ${SRC_DIR}/exec/Relativity.cpp )
+set( PROJECT_MAIN ${SRC_DIR}/exec/Flatland.cpp )
 
 set ( FORCE_CUDA_STANDARD 11 )
 set ( FORCE_CPP_STANDARD  14 )

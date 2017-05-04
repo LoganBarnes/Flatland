@@ -11,6 +11,7 @@ addons:
     sources:
       - 'llvm-toolchain-trusty-3.9'
     packages:
+      - 'mesa-utils'
       - 'clang-3.9'
       - 'libc++-dev'
       - 'xorg-dev'

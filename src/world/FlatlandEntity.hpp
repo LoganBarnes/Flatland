@@ -1,4 +1,4 @@
-// RelativityEntity.hpp
+// FlatlandEntity.hpp
 #pragma once
 
 #include <glm/glm.hpp>
@@ -18,19 +18,19 @@ namespace rel
 
 
 /////////////////////////////////////////////
-/// \brief The RelativityEntity class
+/// \brief The FlatlandEntity class
 ///
 /// \author Logan Barnes
 /////////////////////////////////////////////
-class RelativityEntity
+class FlatlandEntity
 {
 
 public:
 
   ///////////////////////////////////////////////////////////////
-  /// \brief RelativityEntity
+  /// \brief FlatlandEntity
   ///////////////////////////////////////////////////////////////
-  RelativityEntity( float maxTime );
+  FlatlandEntity( float maxTime );
 
 
   ///////////////////////////////////////////////////////////////

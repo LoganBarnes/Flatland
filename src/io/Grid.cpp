@@ -1,6 +1,6 @@
 // Grid.cpp
 #include "Grid.hpp"
-#include "RelativityConfig.hpp"
+#include "FlatlandConfig.hpp"
 
 #include "shared/graphics/OpenGLHelper.hpp"
 #include "shared/graphics/GlmCamera.hpp"

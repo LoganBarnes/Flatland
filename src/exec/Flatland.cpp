@@ -1,8 +1,8 @@
-// Relativity.cpp
+// Flatland.cpp
 #include "shared/core/ContinuousDriver.hpp"
-#include "world/RelativityWorld.hpp"
-#include "io/RelativityIOHandler.hpp"
-#include "RelativityConfig.hpp"
+#include "world/FlatlandWorld.hpp"
+#include "io/FlatlandIOHandler.hpp"
+#include "FlatlandConfig.hpp"
 
 #include <iostream>
 #include <memory>
@@ -34,8 +34,8 @@ main(
     // and ioHandler to interface between the
     // world and the user
     //
-    rel::RelativityWorld world;
-    rel::RelativityIOHandler io( world );
+    rel::FlatlandWorld world;
+    rel::FlatlandIOHandler io( world );
 
     //
     // pass world and ioHandler to driver

@@ -1,8 +1,8 @@
-#include "RelativityIOHandler.hpp"
+#include "FlatlandIOHandler.hpp"
 
 // project
-#include "world/RelativityWorld.hpp"
-#include "world/RelativityEntity.hpp"
+#include "world/FlatlandWorld.hpp"
+#include "world/FlatlandEntity.hpp"
 #include "io/Grid.hpp"
 
 // shared
@@ -32,11 +32,11 @@ constexpr int defaultHeight = 720;
 
 
 /////////////////////////////////////////////
-/// \brief RelativityIOHandler::RelativityIOHandler
+/// \brief FlatlandIOHandler::FlatlandIOHandler
 ///
 /// \author Logan Barnes
 /////////////////////////////////////////////
-RelativityIOHandler::RelativityIOHandler( RelativityWorld &world )
+FlatlandIOHandler::FlatlandIOHandler( FlatlandWorld &world )
   : ImguiOpenGLIOHandler( world, true, defaultWidth, defaultHeight )
   , relWorld_( world )
   , upGrid_( new Grid(
@@ -49,24 +49,24 @@ RelativityIOHandler::RelativityIOHandler( RelativityWorld &world )
   std::unique_ptr< shg::Callback > upCallback( new shs::SharedCallback( ) );
   imguiCallback_->setCallback( std::move( upCallback ) );
 
-  relWorld_.addEntity( std::unique_ptr< RelativityEntity >( new RelativityEntity( 60.0f ) ) );
+  relWorld_.addEntity( std::unique_ptr< FlatlandEntity >( new FlatlandEntity( 60.0f ) ) );
 }
 
 
 
-RelativityIOHandler::~RelativityIOHandler( )
+FlatlandIOHandler::~FlatlandIOHandler( )
 {}
 
 
 
 /////////////////////////////////////////////
-/// \brief RelativityIOHandler::onRender
+/// \brief FlatlandIOHandler::onRender
 /// \param alpha
 ///
 /// \author Logan Barnes
 /////////////////////////////////////////////
 void
-RelativityIOHandler::_onRender( const double )
+FlatlandIOHandler::_onRender( const double )
 {
   shg::OpenGLHelper::clearFramebuffer( );
 
@@ -78,17 +78,17 @@ RelativityIOHandler::_onRender( const double )
   {
     entity->render( *upCamera_ );
   }
-} // RelativityIOHandler::onRender
+} // FlatlandIOHandler::onRender
 
 
 
 /////////////////////////////////////////////
-/// \brief RelativityIOHandler::_onGuiRender
+/// \brief FlatlandIOHandler::_onGuiRender
 ///
 /// \author Logan Barnes
 /////////////////////////////////////////////
 void
-RelativityIOHandler::_onGuiRender( )
+FlatlandIOHandler::_onGuiRender( )
 {
   bool alwaysOpen = true;
 
@@ -106,7 +106,7 @@ RelativityIOHandler::_onGuiRender( )
 
   ImGui::End( );
   ImGui::PopStyleVar( );
-} // RelativityIOHandler::onGuiRender
+} // FlatlandIOHandler::onGuiRender
 
 
 

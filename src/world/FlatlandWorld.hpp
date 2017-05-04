@@ -1,4 +1,4 @@
-// RelativityWorld.hpp
+// FlatlandWorld.hpp
 #pragma once
 
 #include "shared/core/World.hpp"
@@ -10,29 +10,29 @@
 namespace rel
 {
 
-class RelativityEntity;
+class FlatlandEntity;
 
 
 /////////////////////////////////////////////
-/// \brief The RelativityWorld class
+/// \brief The FlatlandWorld class
 ///
 /// \author Logan Barnes
 /////////////////////////////////////////////
-class RelativityWorld : public shs::World
+class FlatlandWorld : public shs::World
 {
 
 public:
 
   ///////////////////////////////////////////////////////////////
-  /// \brief RelativityWorld
+  /// \brief FlatlandWorld
   ///////////////////////////////////////////////////////////////
-  RelativityWorld( );
+  FlatlandWorld( );
 
 
   ///////////////////////////////////////////////////////////////
-  /// \brief ~RelativityWorld
+  /// \brief ~FlatlandWorld
   ///////////////////////////////////////////////////////////////
-  ~RelativityWorld( );
+  ~FlatlandWorld( );
 
 
   ///////////////////////////////////////////////////////////////
@@ -49,20 +49,20 @@ public:
   /// \brief addEntity
   /// \param upEntity
   ///////////////////////////////////////////////////////////////
-  void addEntity ( std::unique_ptr< RelativityEntity > upEntity );
+  void addEntity ( std::unique_ptr< FlatlandEntity > upEntity );
 
 
   ///////////////////////////////////////////////////////////////
   /// \brief getEntities
   /// \return
   ///////////////////////////////////////////////////////////////
-  const std::vector< std::unique_ptr< RelativityEntity > > &getEntities ( ) const;
+  const std::vector< std::unique_ptr< FlatlandEntity > > &getEntities ( ) const;
 
 
 private:
 
   float timePosition_;
-  std::vector< std::unique_ptr< RelativityEntity > > entities_;
+  std::vector< std::unique_ptr< FlatlandEntity > > entities_;
 
 };
 

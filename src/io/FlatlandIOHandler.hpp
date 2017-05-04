@@ -1,4 +1,4 @@
-// RelativityIOHandler.hpp
+// FlatlandIOHandler.hpp
 #pragma once
 
 #include "shared/core/ImguiOpenGLIOHandler.hpp"
@@ -11,29 +11,29 @@
 namespace rel
 {
 
-class RelativityWorld;
+class FlatlandWorld;
 class Grid;
 
 /////////////////////////////////////////////
-/// \brief The RelativityIOHandler class
+/// \brief The FlatlandIOHandler class
 ///
 /// \author Logan Barnes
 /////////////////////////////////////////////
-class RelativityIOHandler : public shs::ImguiOpenGLIOHandler
+class FlatlandIOHandler : public shs::ImguiOpenGLIOHandler
 {
 
 public:
 
   ///////////////////////////////////////////////////////////////
-  /// \brief RelativityIOHandler
+  /// \brief FlatlandIOHandler
   ///////////////////////////////////////////////////////////////
-  RelativityIOHandler( RelativityWorld &world );
+  FlatlandIOHandler( FlatlandWorld &world );
 
 
   ///////////////////////////////////////////////////////////////
-  /// \brief ~RelativityIOHandler
+  /// \brief ~FlatlandIOHandler
   ///////////////////////////////////////////////////////////////
-  ~RelativityIOHandler( );
+  ~FlatlandIOHandler( );
 
 
 protected:
@@ -46,7 +46,7 @@ private:
   virtual
   void _onGuiRender ( ) final;
 
-  RelativityWorld &relWorld_;
+  FlatlandWorld &relWorld_;
   std::unique_ptr< Grid > upGrid_;
 
 };

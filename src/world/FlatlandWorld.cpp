@@ -1,6 +1,6 @@
-// RelativityWorld.cpp
-#include "RelativityWorld.hpp"
-#include "RelativityEntity.hpp"
+// FlatlandWorld.cpp
+#include "FlatlandWorld.hpp"
+#include "FlatlandEntity.hpp"
 
 
 namespace rel
@@ -8,25 +8,25 @@ namespace rel
 
 
 ///////////////////////////////////////////////////////////////
-/// \brief RelativityWorld::RelativityWorld
+/// \brief FlatlandWorld::FlatlandWorld
 ///////////////////////////////////////////////////////////////
-RelativityWorld::RelativityWorld( )
+FlatlandWorld::FlatlandWorld( )
   : timePosition_( 0.0 )
 {}
 
 
 ///////////////////////////////////////////////////////////////
-/// \brief RelativityWorld::~RelativityWorld
+/// \brief FlatlandWorld::~FlatlandWorld
 ///////////////////////////////////////////////////////////////
-RelativityWorld::~RelativityWorld( )
+FlatlandWorld::~FlatlandWorld( )
 {}
 
 
 ///////////////////////////////////////////////////////////////
-/// \brief RelativityWorld::update
+/// \brief FlatlandWorld::update
 ///////////////////////////////////////////////////////////////
 void
-RelativityWorld::update(
+FlatlandWorld::update(
                         const double /*worldTime*/, ///< update to this time
                         const double /*timestep*/ ///< interval since last update
                         )
@@ -35,11 +35,11 @@ RelativityWorld::update(
 
 
 ///////////////////////////////////////////////////////////////
-/// \brief RelativityWorld::addEntity
+/// \brief FlatlandWorld::addEntity
 /// \param upEntity
 ///////////////////////////////////////////////////////////////
 void
-RelativityWorld::addEntity( std::unique_ptr< RelativityEntity > upEntity )
+FlatlandWorld::addEntity( std::unique_ptr< FlatlandEntity > upEntity )
 {
   entities_.push_back( std::move( upEntity ) );
 }
@@ -47,10 +47,10 @@ RelativityWorld::addEntity( std::unique_ptr< RelativityEntity > upEntity )
 
 
 ///////////////////////////////////////////////////////////////
-/// \brief RelativityWorld::getEntities
+/// \brief FlatlandWorld::getEntities
 ///////////////////////////////////////////////////////////////
-const std::vector< std::unique_ptr< RelativityEntity > >&
-RelativityWorld::getEntities( ) const
+const std::vector< std::unique_ptr< FlatlandEntity > >&
+FlatlandWorld::getEntities( ) const
 {
   return entities_;
 }

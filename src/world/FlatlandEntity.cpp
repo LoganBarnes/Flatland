@@ -1,6 +1,6 @@
-// RelativityEntity.cpp
-#include "RelativityEntity.hpp"
-#include "RelativityConfig.hpp"
+// FlatlandEntity.cpp
+#include "FlatlandEntity.hpp"
+#include "FlatlandConfig.hpp"
 
 // shared
 #include "shared/graphics/OpenGLHelper.hpp"
@@ -14,9 +14,9 @@ namespace rel
 
 
 ///////////////////////////////////////////////////////////////
-/// \brief RelativityEntity::RelativityEntity
+/// \brief FlatlandEntity::FlatlandEntity
 ///////////////////////////////////////////////////////////////
-RelativityEntity::RelativityEntity( float maxTime )
+FlatlandEntity::FlatlandEntity( float maxTime )
   : numVertsPerShape_( 32 )
   , maxTime_( maxTime )
   , color_( 0.1f, 0.5f, 0.9f )
@@ -27,15 +27,15 @@ RelativityEntity::RelativityEntity( float maxTime )
 
 
 ///////////////////////////////////////////////////////////////
-/// \brief RelativityEntity::move
+/// \brief FlatlandEntity::move
 ///////////////////////////////////////////////////////////////
 void
-RelativityEntity::move( const double /*dt*/ )
+FlatlandEntity::move( const double /*dt*/ )
 {}
 
 
 void
-RelativityEntity::render( const shg::GlmCamera< float > &camera ) const
+FlatlandEntity::render( const shg::GlmCamera< float > &camera ) const
 {
   glUseProgram( *glIds_.program );
 
@@ -61,12 +61,12 @@ RelativityEntity::render( const shg::GlmCamera< float > &camera ) const
                                   numVertsPerShape_,
                                   GL_TRIANGLE_FAN
                                   );
-} // RelativityEntity::render
+} // FlatlandEntity::render
 
 
 
 void
-RelativityEntity::_prepGLPipeline( )
+FlatlandEntity::_prepGLPipeline( )
 {
   glm::vec2 scale( 0.25f, 0.5f );
   std::vector< float > vboData;
@@ -97,7 +97,7 @@ RelativityEntity::_prepGLPipeline( )
                                               0,
                                               vaoElements
                                               );
-} // RelativityEntity::_prepGLPipeline
+} // FlatlandEntity::_prepGLPipeline
 
 
 
