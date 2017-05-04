@@ -17,6 +17,7 @@ addons:
       - 'mesa-utils'
       - 'libgl1-mesa-glx'
       - 'libgl1-mesa-dev'
+      - 'mesa-common-dev'
       - 'xvfb'
 
 env:

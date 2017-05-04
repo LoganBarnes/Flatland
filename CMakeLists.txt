@@ -29,7 +29,7 @@ set( USE_OPENGL ON CACHE BOOL "" FORCE )
 set( USE_GUI    ON CACHE BOOL "" FORCE )
 
 set( USE_GMOCK ${BUILD_TESTS} CACHE BOOL "" FORCE )
-
+find_package( OpenGL REQUIRED )
 
 # set variables from shared simulation project
 add_subdirectory( ${SHARED_PATH} )
