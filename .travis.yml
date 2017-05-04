@@ -64,16 +64,6 @@ before_install:
     fi
   - ${CXX} --version
 
-  ############################################################################
-  # Set up headless rendering
-  ############################################################################
-  - sudo apt-get purge fglrx
-  - cat /etc/init.d/xvfb
-  - sh -e /etc/init.d/xvfb start
-  - sleep 2
-  - glxinfo -display :99
-
-
 install:
   ############################################################################
   # All compiled dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
@@ -95,6 +85,18 @@ install:
   - cmake --version
 
 script:
+  ############################################################################
+  # Set up headless rendering
+  ############################################################################
+  - sudo apt-get purge fglrx
+  - cat /etc/init.d/xvfb
+  - sh -e /etc/init.d/xvfb start
+  - sleep 2
+  - glxinfo -display :99
+
+  ############################################################################
+  # Build project and run tests
+  ############################################################################
   - cd ${TRAVIS_BUILD_DIR}/run
   - ./unixConfigureAndBuild.sh -sf -t
   - testbin/testFlatland
