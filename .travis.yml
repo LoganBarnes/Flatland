@@ -33,8 +33,6 @@ matrix:
       env: LLVM=3.9 SHARED=OFF
       compiler: "clang-3.9"
 
-
-
 before_install:
   ############################################################################
   # Update OS X homebrew
@@ -64,6 +62,16 @@ before_install:
     fi
   - ${CXX} --version
 
+  ############################################################################
+  # Set up headless rendering
+  ############################################################################
+  - sudo apt-get purge fglrx
+  - cat /etc/init.d/xvfb
+  - sh -e /etc/init.d/xvfb start
+  - sleep 2
+  - glxinfo -display :99
+  - export DISPLAY=:99
+
 install:
   ############################################################################
   # All compiled dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
@@ -85,15 +93,6 @@ install:
   - cmake --version
 
 script:
-  ############################################################################
-  # Set up headless rendering
-  ############################################################################
-  - sudo apt-get purge fglrx
-  - cat /etc/init.d/xvfb
-  - sh -e /etc/init.d/xvfb start
-  - sleep 2
-  - glxinfo -display :99
-
   ############################################################################
   # Build project and run tests
   ############################################################################
