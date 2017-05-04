@@ -11,12 +11,12 @@ addons:
     sources:
       - 'llvm-toolchain-trusty-3.9'
     packages:
-      - 'mesa-utils'
+      # - 'mesa-utils'
       - 'clang-3.9'
       - 'libc++-dev'
       - 'xorg-dev'
-      - 'libglu1-mesa-dev'
-      - 'libgl1-mesa-dev'
+      # - 'libglu1-mesa-dev'
+      # - 'libgl1-mesa-dev'
 
 env:
   global:
@@ -71,9 +71,10 @@ before_install:
   ############################################################################
   # Set up headless rendering
   ############################################################################
+  - sudo apt-get purge fglrx
   - sudo add-apt-repository -y ppa:oibaf/graphics-drivers
   - sudo apt-get update -qq -y
-  - sudo apt-get purge fglrx
+  - sudo apt dist-upgrade -qq -y
   - export DISPLAY=:99
   # - export GALLIUM_DRIVER=\"softpipe\"
   - cat /etc/init.d/xvfb
