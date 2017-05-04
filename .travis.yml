@@ -16,6 +16,7 @@ addons:
       - 'libc++-dev'
       - 'xorg-dev'
       - 'libglu1-mesa-dev'
+      - 'libgl1-mesa-dev'
 
 env:
   global:
