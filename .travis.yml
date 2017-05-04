@@ -1,20 +1,101 @@
-os: linux
+language: c++
+
+branches:
+  only:
+    - master
+
 dist: trusty
-sudo: required
-language: node
+
 addons:
   apt:
+    sources:
+      - 'llvm-toolchain-trusty-3.9'
     packages:
-     - mesa-utils
+      - 'clang-3.9'
+      - 'libc++-dev'
+      - 'xorg-dev'
+      - 'libglu1-mesa-dev'
+
 env:
   global:
     - TERM: dumb
     - MESA_DEBUG: 1
     - LIBGL_DEBUG: 1
     - EGL_LOG_LEVEL: debug
-script:
+
+
+matrix:
+  include:
+
+    # clang 3.9
+    - os: linux
+      env: LLVM=3.9 SHARED=OFF
+      compiler: "clang-3.9"
+
+
+
+before_install:
+  ############################################################################
+  # Update OS X homebrew
+  ############################################################################
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+      brew update
+    fi
+
+  ############################################################################
+  # Set build type to default Release value
+  ############################################################################
+  - if [[ "${BUILD_TYPE}" == "" ]]; then BUILD_TYPE=Release; fi
+
+  ############################################################################
+  # Set up default compiler versions and corresponding environment variables
+  ############################################################################
+  - if [[ "${LLVM}" == "default" ]]; then LLVM=3.9; fi
+  - |
+    if [[ "${LLVM}" != "" ]]; then
+      export CXX=clang++-${LLVM}
+      export CXXFLAGS=-stdlib=libc++
+    fi
+  - |
+    if [[ "${GCC}" != "" ]]; then
+      export CXX=g++-${GCC}
+    fi
+  - ${CXX} --version
+
+  ############################################################################
+  # Set up headless rendering
+  ############################################################################
   - sudo apt-get purge fglrx
   - cat /etc/init.d/xvfb
   - sh -e /etc/init.d/xvfb start
   - sleep 2
   - glxinfo -display :99
+
+
+install:
+  ############################################################################
+  # All compiled dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
+  ############################################################################
+  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+  - mkdir -p ${DEPS_DIR} && cd ${DEPS_DIR}
+
+  ############################################################################
+  # Install a recent CMake
+  ############################################################################
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
+      CMAKE_URL="https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.tar.gz"
+      mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+      export PATH=${DEPS_DIR}/cmake/bin:${PATH}
+    else
+      brew upgrade cmake || brew install cmake
+    fi
+  - cmake --version
+
+script:
+  - cd ${TRAVIS_BUILD_DIR}/run
+  - ./unixConfigureAndBuild.sh -sf -t
+  - testbin/testFlatland
+
+

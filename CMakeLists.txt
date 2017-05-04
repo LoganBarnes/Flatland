@@ -1,5 +1,5 @@
 cmake_minimum_required ( VERSION 3.2.0 )
-project ( Relativity )
+project ( Flatland )
 
 option( BUILD_TESTS OFF "Build unit tests created with gmock/gtest framework"  )
 
