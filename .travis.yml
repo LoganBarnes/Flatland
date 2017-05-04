@@ -72,6 +72,7 @@ before_install:
   - sleep 2
   - glxinfo -display :99
   - export DISPLAY=:99
+  - "export GALLIUM_DRIVER=\"softpipe\""
 
 install:
   ############################################################################
