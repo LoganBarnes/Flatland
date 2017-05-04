@@ -33,8 +33,8 @@ addons:
       - mesa-utils
       - libgl1-mesa-glx
 
-env:
-  global:
+# env:
+  # global:
     # - TERM: dumb
     # - MESA_DEBUG: 1
     # - LIBGL_DEBUG: 1
@@ -131,7 +131,7 @@ install:
 before_script:
   - export DISPLAY=:99
   - export LIBGL_ALWAYS_SOFTWARE=1
-  - xpra --xvfb=\"Xorg +extension GLX +extension RANDR +extension RENDER -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log\"  start :99
+  - xpra --xvfb="Xorg +extension GLX +extension RANDR +extension RENDER -config `pwd`/res/config/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log" start :99
   - sleep 3
   - LIBGL_ALWAYS_SOFTWARE=1 glxinfo
   - glxinfo
