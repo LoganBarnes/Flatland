@@ -96,11 +96,11 @@ before_install:
   - export DISPLAY=:99
   - export LIBGL_ALWAYS_SOFTWARE=1
   # - export GALLIUM_DRIVER=\"softpipe\"
-  # - cat /etc/init.d/xvfb
-  # - sh -e /etc/init.d/xvfb start
-  # - sleep 2
-  - xpra --xvfb="Xorg +extension GLX +extension RANDR +extension RENDER -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :99
-  - sleep 3
+  - cat /etc/init.d/xvfb
+  - sh -e /etc/init.d/xvfb start
+  - sleep 2
+  # - xpra --xvfb="Xorg +extension GLX +extension RANDR +extension RENDER -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :99
+  # - sleep 3
   - glxinfo
 
 install:
