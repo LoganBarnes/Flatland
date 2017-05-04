@@ -1,5 +1,8 @@
 #include "RelativityIOHandler.hpp"
 
+// project
+#include "io/Grid.hpp"
+
 // shared
 #include "shared/graphics/OpenGLHelper.hpp"
 #include "shared/graphics/GlmCamera.hpp"
@@ -11,14 +14,17 @@
 #include <vector>
 #include <algorithm>
 
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/string_cast.hpp>
+
 namespace rel
 {
 
 
 namespace
 {
-constexpr int defaultWidth  = 1024;
-constexpr int defaultHeight = 1024;
+constexpr int defaultWidth  = 1280;
+constexpr int defaultHeight = 720;
 }
 
 
@@ -29,9 +35,18 @@ constexpr int defaultHeight = 1024;
 /////////////////////////////////////////////
 RelativityIOHandler::RelativityIOHandler( shs::World &world )
   : ImguiOpenGLIOHandler( world, true, defaultWidth, defaultHeight )
+  , upGrid_( new Grid(
+                      glm::vec3( -10.0f, -10.0f, -60.0f ), // min
+                      glm::vec3(  10.0f,  10.0f, 0.0f ), // max
+                      glm::vec3( 5.0f ), // spacing
+                      glm::vec3( 0.7f )  // color
+                      ) )
 {
   std::unique_ptr< shg::Callback > upCallback( new shs::SharedCallback( ) );
   imguiCallback_->setCallback( std::move( upCallback ) );
+
+  std::cout << glm::to_string( upCamera_->getEyeVector( ) ) << std::endl;
+  std::cout << glm::to_string( upCamera_->getLookVector( ) ) << std::endl;
 }
 
 
@@ -51,6 +66,8 @@ void
 RelativityIOHandler::_onRender( const double )
 {
   shg::OpenGLHelper::clearFramebuffer( );
+
+  upGrid_->render( *upCamera_ );
 } // RelativityIOHandler::onRender
 
 
@@ -64,6 +81,7 @@ void
 RelativityIOHandler::_onGuiRender( )
 {
   bool alwaysOpen = true;
+
   ImGui::PushStyleVar( ImGuiStyleVar_WindowRounding, 0.0f );
 
   ImGui::SetNextWindowPos ( ImVec2( 0, 0 ) );

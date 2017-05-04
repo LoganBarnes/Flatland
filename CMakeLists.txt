@@ -43,9 +43,13 @@ set(
 
     # ignored by compilers but added to project files
     ${SHARED_UNCRUSTIFY_FILE}
+    ${RES_PATH}/shaders/grid/shader.vert
+    ${RES_PATH}/shaders/grid/shader.frag
 
     ${SRC_DIR}/io/RelativityIOHandler.hpp
     ${SRC_DIR}/io/RelativityIOHandler.cpp
+    ${SRC_DIR}/io/Grid.hpp
+    ${SRC_DIR}/io/Grid.cpp
     )
 
 if ( ${BUILD_TESTS} )

@@ -17,6 +17,7 @@ class World;
 namespace rel
 {
 
+class Grid;
 
 /////////////////////////////////////////////
 /// \brief The RelativityIOHandler class
@@ -49,6 +50,9 @@ private:
 
   virtual
   void _onGuiRender ( ) final;
+
+
+  std::unique_ptr< Grid > upGrid_;
 
 };
 
