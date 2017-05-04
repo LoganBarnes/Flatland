@@ -95,6 +95,7 @@ before_install:
   - sudo apt-get -yq --force-yes install libgl1-mesa-dev libgl1-mesa-glx mesa-common-dev libglapi-mesa libgbm1 libgl1-mesa-dri libxatracker-dev xvfb
   - export DISPLAY=:99
   - export LIBGL_ALWAYS_SOFTWARE=1
+  - export LIBGL_PROFILE_CORE=1
   # - export GALLIUM_DRIVER=\"softpipe\"
   - cat /etc/init.d/xvfb
   - sh -e /etc/init.d/xvfb start
