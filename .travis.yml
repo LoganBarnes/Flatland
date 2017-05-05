@@ -11,7 +11,8 @@ addons:
       - libglew-dev
       - xpra
       - glew-utils
-    - sourceline: ppa:ubuntu-x-swat/updates
+    sources:
+      - sourceline: ppa:ubuntu-x-swat/updates
 
 before_install:
   # - sudo add-apt-repository -y ppa:oibaf/graphics-drivers
