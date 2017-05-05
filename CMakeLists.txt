@@ -63,6 +63,7 @@ if ( ${BUILD_TESTS} )
 
   set(
       TESTING_SOURCE
+      ${SRC_DIR}/testing/EmptyUnitTests.cpp
       ${SRC_DIR}/testing/HeadlessRenderUnitTests.cpp
       )
 

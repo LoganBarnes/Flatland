@@ -1,4 +1,4 @@
-// HeadlessRenderUnitTests.cpp
+// EmptyUnitTests.cpp
 #include "shared/core/ContinuousDriver.hpp"
 #include "world/FlatlandWorld.hpp"
 #include "io/FlatlandIOHandler.hpp"
@@ -14,25 +14,25 @@ constexpr float epsilonf = 1.0e-8f;
 
 
 ///
-/// \brief The HeadlessRenderUnitTests class
+/// \brief The EmptyUnitTests class
 ///
-class HeadlessRenderUnitTests : public ::testing::Test
+class EmptyUnitTests : public ::testing::Test
 {
 
 protected:
 
   /////////////////////////////////////////////////////////////////
-  /// \brief HeadlessRenderUnitTests
+  /// \brief EmptyUnitTests
   /////////////////////////////////////////////////////////////////
-  HeadlessRenderUnitTests( )
+  EmptyUnitTests( )
   {}
 
 
   /////////////////////////////////////////////////////////////////
-  /// \brief ~HeadlessRenderUnitTests
+  /// \brief ~EmptyUnitTests
   /////////////////////////////////////////////////////////////////
   virtual
-  ~HeadlessRenderUnitTests( )
+  ~EmptyUnitTests( )
   {}
 
 };
@@ -45,24 +45,10 @@ MATCHER_P( FloatNearPointwise, eps, "Out of range" )
 
 
 /////////////////////////////////////////////////////////////////
-/// \brief GpuTestGlfwInitAndWindowCreation
+/// \brief TestNothing
 /////////////////////////////////////////////////////////////////
-TEST_F( HeadlessRenderUnitTests, GpuTestGlfwInitAndWindowCreation )
-{
-  //
-  // create world to handle physical updates
-  // and ioHandler to interface between the
-  // world and the user
-  //
-  rel::FlatlandWorld world;
-  rel::FlatlandIOHandler io( world );
-
-  //
-  // pass world and ioHandler to driver
-  // to manage event loop
-  //
-  shs::ContinuousDriver driver( world, io );
-}
+TEST_F( EmptyUnitTests, TestNothing )
+{}
 
 
 
