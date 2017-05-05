@@ -6,9 +6,10 @@ os:
 dist: trusty
 sudo: required
 
-# addons:
-#   apt:
-#     packages:
+addons:
+  apt:
+    packages:
+      - xpra
 #       - libglew-dev
 #       - xpra
 #       - glew-utils
