@@ -59,6 +59,10 @@ public:
   const std::vector< std::unique_ptr< FlatlandEntity > > &getEntities ( ) const;
 
 
+  float
+  getTimePosition( ) const { return timePosition_; }
+
+
 private:
 
   float timePosition_;

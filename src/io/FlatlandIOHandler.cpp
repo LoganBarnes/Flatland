@@ -38,7 +38,7 @@ constexpr int defaultHeight = 720;
 /////////////////////////////////////////////
 FlatlandIOHandler::FlatlandIOHandler( FlatlandWorld &world )
   : ImguiOpenGLIOHandler( world, true, defaultWidth, defaultHeight )
-  , relWorld_( world )
+  , flatWorld_( world )
   , upGrid_( new Grid(
                       glm::vec3( -10.0f, -10.0f, -60.0f ), // min
                       glm::vec3(  10.0f,  10.0f, 0.0f ), // max
@@ -46,10 +46,7 @@ FlatlandIOHandler::FlatlandIOHandler( FlatlandWorld &world )
                       glm::vec3( 0.7f )  // color
                       ) )
 {
-  std::unique_ptr< shg::Callback > upCallback( new shs::SharedCallback( ) );
-  imguiCallback_->setCallback( std::move( upCallback ) );
-
-  relWorld_.addEntity( std::unique_ptr< FlatlandEntity >( new FlatlandEntity( 60.0f ) ) );
+  flatWorld_.addEntity( std::unique_ptr< FlatlandEntity >( new FlatlandEntity( 60.0f ) ) );
 }
 
 
@@ -72,7 +69,7 @@ FlatlandIOHandler::_onRender( const double )
 
   upGrid_->render( *upCamera_ );
 
-  auto &entities = relWorld_.getEntities( );
+  auto &entities = flatWorld_.getEntities( );
 
   for ( auto &entity : entities )
   {
@@ -103,6 +100,10 @@ FlatlandIOHandler::_onGuiRender( )
               1000.0f / ImGui::GetIO( ).Framerate,
               ImGui::GetIO( ).Framerate
               );
+
+  ImGui::Separator( );
+
+  ImGui::Text( "World Time: %.3f", flatWorld_.getTimePosition( ) );
 
   ImGui::End( );
   ImGui::PopStyleVar( );

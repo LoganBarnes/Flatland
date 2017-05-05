@@ -46,7 +46,7 @@ private:
   virtual
   void _onGuiRender ( ) final;
 
-  FlatlandWorld &relWorld_;
+  FlatlandWorld &flatWorld_;
   std::unique_ptr< Grid > upGrid_;
 
 };
