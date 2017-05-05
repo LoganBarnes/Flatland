@@ -3,8 +3,6 @@ language: c++
 os:
   - linux
 
-dist: trusty
-
 addons:
   apt:
     packages:
@@ -16,7 +14,6 @@ addons:
 
 before_install:
   - sudo add-apt-repository -y ppa:oibaf/graphics-drivers
-  - sudo add-apt-repository -y ppa:ubuntu-x-swat/updates
   - sudo apt-get update -qq -y
   - sudo apt-get dist-upgrade -qq -y
   # - export DEBIAN_FRONTEND=noninteractive
