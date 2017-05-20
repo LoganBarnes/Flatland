@@ -68,6 +68,12 @@ FlatlandEntity::render( const shg::GlmCamera< float > &camera ) const
 void
 FlatlandEntity::_prepGLPipeline( )
 {
+  std::vector< std::string > shaders =
+  {
+    rel::RES_PATH + "shaders/entity/shader.vert",
+    rel::RES_PATH + "shaders/entity/shader.frag"
+  };
+
   glm::vec2 scale( 0.25f, 0.5f );
   std::vector< float > vboData;
 
@@ -88,15 +94,13 @@ FlatlandEntity::_prepGLPipeline( )
     { "inXYCoords", 2, GL_FLOAT, nullptr }
   };
 
-  glIds_ =
-    shg::OpenGLHelper::createStandardPipeline(
-                                              rel::RES_PATH + "shaders/entity/shader.vert",
-                                              rel::RES_PATH + "shaders/entity/shader.frag",
-                                              vboData.data( ),
-                                              vboData.size( ),
-                                              0,
-                                              vaoElements
-                                              );
+  glIds_ = shg::OpenGLHelper::createStandardPipeline(
+                                                     shaders,
+                                                     vboData.data( ),
+                                                     vboData.size( ),
+                                                     0,
+                                                     vaoElements
+                                                     );
 } // FlatlandEntity::_prepGLPipeline
 
 
