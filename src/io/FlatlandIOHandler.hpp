@@ -3,6 +3,7 @@
 
 #include "shared/core/ImguiOpenGLIOHandler.hpp"
 #include "shared/graphics/Callback.hpp"
+#include <glm/glm.hpp>
 
 #include <string>
 #include <memory>
@@ -36,6 +37,21 @@ public:
   ~FlatlandIOHandler( );
 
 
+  ///////////////////////////////////////////////////////////////
+  /// \brief updateIO
+  ///
+  ///        Checks for keystrokes or mouse movement (or
+  ///        alternate controllers) and updates output text,
+  ///        images, or buffer swaps not handled by showWorld().
+  ///
+  ///////////////////////////////////////////////////////////////
+  virtual
+  void updateIO ( );
+
+
+  void addFRUCameraMovement ( glm::ivec3 lruMoveDir );
+
+
 protected:
 
 private:
@@ -48,6 +64,9 @@ private:
 
   FlatlandWorld &flatWorld_;
   std::unique_ptr< Grid > upGrid_;
+
+  glm::ivec3 fruCameraMovement_;
+  float camMovementScale_;
 
 };
 

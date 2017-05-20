@@ -55,6 +55,8 @@ set(
 
     ${SRC_DIR}/io/FlatlandIOHandler.hpp
     ${SRC_DIR}/io/FlatlandIOHandler.cpp
+    ${SRC_DIR}/io/FlatlandCallback.hpp
+    ${SRC_DIR}/io/FlatlandCallback.cpp
     ${SRC_DIR}/io/Grid.hpp
     ${SRC_DIR}/io/Grid.cpp
     )
