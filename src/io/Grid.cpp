@@ -62,10 +62,12 @@ Grid::render( const shg::GlmCamera< float > &camera ) const
 void
 Grid::_buildGLPipeline( )
 {
-  glIds_.program =
+  glIds_.program = 
     shg::OpenGLHelper::createProgram(
+                                     GL_VERTEX_SHADER,
                                      rel::RES_PATH + "shaders/grid/shader.vert",
-                                     rel::RES_PATH + "shaders/grid/shader.frag"
+                                     GL_FRAGMENT_SHADER,
+                                     rel::RES_PATH + "shaders/grid/shader.frag" 
                                      );
 
   const std::vector< float > vboData = _buildVBO( );
