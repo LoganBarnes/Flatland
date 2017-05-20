@@ -68,10 +68,10 @@ FlatlandEntity::render( const shg::GlmCamera< float > &camera ) const
 void
 FlatlandEntity::_prepGLPipeline( )
 {
-  shg::ShaderVec shaders = 
+  std::vector< std::string > shaders =
   {
-    { GL_VERTEX_SHADER,   rel::RES_PATH + "shaders/entity/shader.vert" },
-    { GL_FRAGMENT_SHADER, rel::RES_PATH + "shaders/entity/shader.frag" }
+    rel::RES_PATH + "shaders/entity/shader.vert",
+    rel::RES_PATH + "shaders/entity/shader.frag"
   };
 
   glm::vec2 scale( 0.25f, 0.5f );
