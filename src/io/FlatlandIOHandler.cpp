@@ -44,7 +44,7 @@ FlatlandIOHandler::FlatlandIOHandler( FlatlandWorld &world )
                       glm::vec3( 5.0f ), // spacing
                       glm::vec3( 0.7f )  // color
                       ) )
-  , fruCameraMovement_( 0.0f )
+  , fruCameraMovement_( 0 )
   , camMovementScale_( 0.1f )
 {
   std::unique_ptr< FlatlandCallback > flatCallback( new FlatlandCallback( *this ) );

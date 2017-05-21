@@ -160,7 +160,7 @@ FlatlandCallback::handleKey(
 
  void
  FlatlandCallback::handleCursorPosition(
-                                       GLFWwindow */*pWindow*/,
+                                       GLFWwindow *,
                                        double      xpos,
                                        double      ypos
                                        )
