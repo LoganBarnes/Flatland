@@ -19,13 +19,13 @@ public:
   ~FlatlandCallback( );
 
 
-  // virtual
-  // void handleMouseButton (
-  //                         GLFWwindow *pWindow,
-  //                         int         button,
-  //                         int         action,
-  //                         int         mods
-  //                         );
+//   virtual
+//   void handleMouseButton (
+//                           GLFWwindow *pWindow,
+//                           int         button,
+//                           int         action,
+//                           int         mods
+//                           );
 
   virtual
   void handleKey (
@@ -36,19 +36,19 @@ public:
                   int         mods
                   );
 
-  // virtual
-  // void handleCursorPosition (
-  //                            GLFWwindow *pWindow,
-  //                            double      xpos,
-  //                            double      ypos
-  //                            );
+   virtual
+   void handleCursorPosition (
+                              GLFWwindow *pWindow,
+                              double      xpos,
+                              double      ypos
+                              );
 
-  // virtual
-  // void handleScroll (
-  //                    GLFWwindow *pWindow,
-  //                    double      xoffset,
-  //                    double      yoffset
-  //                    );
+   virtual
+   void handleScroll (
+                      GLFWwindow *pWindow,
+                      double      xoffset,
+                      double      yoffset
+                      );
 
 
 private:

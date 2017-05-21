@@ -18,8 +18,6 @@
 #include <algorithm>
 #include <memory>
 
-#define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtx/string_cast.hpp>
 
 namespace rel
 {
@@ -72,16 +70,18 @@ FlatlandIOHandler::updateIO( )
 {
   OpenGLIOHandler::updateIO( );
 
+  // no movement (zero vec)
+  if ( fruCameraMovement_.x == 0
+       && fruCameraMovement_.y == 0
+       && fruCameraMovement_.z == 0 )
+  {
+    return;
+  }
+
   //
   // process camera movement
   //
   glm::vec3 eye = upCamera_->getEyeVector( );
-
-  // no movement (zero vec)
-  if ( fruCameraMovement_.x == fruCameraMovement_.y == fruCameraMovement_.z == 0 )
-  {
-    return;
-  }
 
   glm::vec3 fruMoveDir( fruCameraMovement_ );
   fruMoveDir = glm::normalize( fruMoveDir ) * camMovementScale_;

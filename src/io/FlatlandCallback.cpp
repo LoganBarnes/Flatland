@@ -151,10 +151,6 @@ FlatlandCallback::handleKey(
     } // switch
 
   }
-  else
-  {
-    std::cout << action << ", " << GLFW_REPEAT << std::endl;
-  }
 
   flatHandler_.addFRUCameraMovement( moveDir );
 
@@ -162,34 +158,32 @@ FlatlandCallback::handleKey(
 
 
 
-// void
-// FlatlandCallback::handleCursorPosition(
-//                                       GLFWwindow */*pWindow*/,
-//                                       double      xpos,
-//                                       double      ypos
-//                                       )
-// {
+ void
+ FlatlandCallback::handleCursorPosition(
+                                       GLFWwindow */*pWindow*/,
+                                       double      xpos,
+                                       double      ypos
+                                       )
+ {
+   if ( leftMouseDown_ )
+   {}
+   else
+   if ( rightMouseDown_ )
+   {}
 
-//   if ( leftMouseDown_ )
-//   {}
-//   else
-//   if ( rightMouseDown_ )
-//   {}
-
-//   prevX_ = xpos;
-//   prevY_ = ypos;
-
-// } // handleCursorPosition
+   prevX_ = xpos;
+   prevY_ = ypos;
+ } // handleCursorPosition
 
 
 
-// void
-// FlatlandCallback::handleScroll(
-//                               GLFWwindow*,
-//                               double,
-//                               double
-//                               )
-// {}
+ void
+ FlatlandCallback::handleScroll(
+                               GLFWwindow*,
+                               double,
+                               double
+                               )
+ {}
 
 
 
