@@ -16,6 +16,7 @@ addons:
       - 'mesa-utils'
       - 'xorg-dev'
       - 'libglu1-mesa-dev'
+      - 'libc++abi-dev'
 
 matrix:
   include:
